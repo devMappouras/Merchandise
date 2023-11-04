@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Customers\" />
+    <Folder Include="Orders\" />
+    <Folder Include="Primitives\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Programming\00.DevMappouras\Merchandise\Merchandise\src\Domain\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Programming\00.DevMappouras\Merchandise\Merchandise\src\Domain\.editorconfig" />
+  </ItemGroup>
+
+</Project>
