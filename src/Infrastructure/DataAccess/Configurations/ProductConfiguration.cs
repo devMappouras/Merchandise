@@ -1,16 +1,42 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Domain.Products;
 
-namespace Infrastructure.DataAccess.Configurations;
-
-internal class ProductConfiguration : IEntityTypeConfiguration<Product>
+namespace Infrastructure.Models.Configurations
 {
-    public void Configure(EntityTypeBuilder<Product> builder)
+    public partial class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        builder.HasKey(p => p.Id);
-        builder.Property(p => p.Name).IsRequired().HasMaxLength(100); // Adjust the maximum length as needed
-        builder.Property(p => p.Price).HasColumnType("decimal(18, 2)"); // Adjust precision and scale as needed
-        builder.Property(p => p.Stock); // You can configure Stock property as required
+        public void Configure(EntityTypeBuilder<Product> entity)
+        {
+            entity.ToTable("Product", "product");
+
+            entity.Property(e => e.Description).HasMaxLength(350);
+            entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.ProductName)
+            .IsRequired()
+            .HasMaxLength(50);
+
+            entity.HasOne(d => d.Category).WithMany(p => p.Products)
+            .HasForeignKey(d => d.CategoryId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Product_ProductCategory");
+
+            entity.HasOne(d => d.Discount).WithMany(p => p.Products)
+            .HasForeignKey(d => d.DiscountId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Product_Discount");
+
+            entity.HasOne(d => d.Inventory).WithMany(p => p.Products)
+            .HasForeignKey(d => d.InventoryId)
+            .HasConstraintName("FK_Product_ProductInventory");
+
+            entity.HasOne(d => d.Manufacturer).WithMany(p => p.Products)
+            .HasForeignKey(d => d.ManufacturerId)
+            .HasConstraintName("FK_Product_Manufacturer");
+
+            OnConfigurePartial(entity);
+        }
+
+        partial void OnConfigurePartial(EntityTypeBuilder<Product> entity);
     }
 }

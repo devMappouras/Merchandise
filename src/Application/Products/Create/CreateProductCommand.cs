@@ -3,6 +3,10 @@
 namespace Application.Products.Create;
 
 public record CreateProductCommand (
-    string Name,
-    decimal Price,
-    int Stock) : IRequest;
+               string productName,
+               string description,
+               decimal price,
+               int discountId,
+               int categoryId,
+               int? manufacturerId,
+               int? inventoryId) : IRequest;

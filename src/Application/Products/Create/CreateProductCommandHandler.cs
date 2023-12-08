@@ -1,4 +1,5 @@
-﻿using Domain.Products;
+﻿using Domain.Entities;
+using Domain.Products;
 using Infrastructure.DataAccess;
 using MediatR;
 
@@ -16,9 +17,15 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 
     public async Task Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        var product = new Product(request.Name, request.Price, request.Stock);
+        var product = new Product(request.productName,
+            request.description,
+            request.price,
+            request.discountId,
+            request.categoryId,
+            request.manufacturerId,
+            request.inventoryId);
+        
         _productRepository.Add(product);
-
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,13 +1,14 @@
-﻿using Domain.Products;
+﻿using Domain.Entities;
+using Domain.Products;
 using Infrastructure.DataAccess;
 
 namespace Infrastructure.Repositories;
 
 public class ProductRepository : IProductRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly MerchantiseDBContext _context;
 
-    public ProductRepository(ApplicationDbContext context)
+    public ProductRepository(MerchantiseDBContext context)
     {
         _context = context;
     }

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [cart].[CartItem] (
-    [CartItemId] INT             NOT NULL,
+    [CartItemId] INT             IDENTITY (1, 1) NOT NULL,
     [SessionId]  INT             NOT NULL,
     [ProductId]  INT             NOT NULL,
     [Quantity]   INT             NOT NULL,
@@ -8,4 +8,6 @@
     CONSTRAINT [FK_CartItem_Product] FOREIGN KEY ([ProductId]) REFERENCES [product].[Product] ([ProductId]),
     CONSTRAINT [FK_CartItem_ShoppingSession] FOREIGN KEY ([SessionId]) REFERENCES [cart].[ShoppingSession] ([SessionId])
 );
+
+
 

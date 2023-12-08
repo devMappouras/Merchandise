@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [order].[Order] (
-    [OrderId]           INT             NOT NULL,
+    [OrderId]           INT             IDENTITY (1, 1) NOT NULL,
     [CustomerId]        INT             NOT NULL,
     [OrderDate]         DATETIME        NOT NULL,
     [TotalPrice]        DECIMAL (18, 2) NOT NULL,
@@ -12,4 +12,6 @@
     CONSTRAINT [FK_Order_OrderStatus] FOREIGN KEY ([OrderStatusId]) REFERENCES [order].[OrderStatus] ([OrderStatusId]),
     CONSTRAINT [FK_Order_PaymentDetail] FOREIGN KEY ([PaymentDetailId]) REFERENCES [order].[PaymentDetail] ([PaymentDetailId])
 );
+
+
 

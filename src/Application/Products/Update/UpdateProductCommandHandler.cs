@@ -32,7 +32,7 @@ internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProduc
         var product = await _productRepository.GetByIdAsync(request.ProductId)
             ?? throw new ProductNotFoundException(request.ProductId);
 
-        product.Update(request.Name, request.Price, request.Stock);
+        //product.Update(request.Name, request.Price, request.Stock);
         _productRepository.Update(product);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);

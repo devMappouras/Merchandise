@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [product].[Product] (
-    [ProductId]      INT             NOT NULL,
+    [ProductId]      INT             IDENTITY (1, 1) NOT NULL,
     [ProductName]    NVARCHAR (50)   NOT NULL,
     [Description]    NVARCHAR (350)  NULL,
     [Price]          DECIMAL (18, 2) NOT NULL,
@@ -13,4 +13,6 @@
     CONSTRAINT [FK_Product_ProductCategory] FOREIGN KEY ([CategoryId]) REFERENCES [product].[ProductCategory] ([CategoryId]),
     CONSTRAINT [FK_Product_ProductInventory] FOREIGN KEY ([InventoryId]) REFERENCES [product].[ProductInventory] ([InventoryId])
 );
+
+
 

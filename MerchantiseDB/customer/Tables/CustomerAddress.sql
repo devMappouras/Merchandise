@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [customer].[CustomerAddress] (
-    [CustomerAddressId] INT            NOT NULL,
+    [CustomerAddressId] INT            IDENTITY (1, 1) NOT NULL,
     [CustomerId]        INT            NOT NULL,
     [StreetAddress]     NVARCHAR (200) NOT NULL,
     [City]              NVARCHAR (50)  NOT NULL,
@@ -10,4 +10,6 @@
     CONSTRAINT [FK_CustomerAddress_Country] FOREIGN KEY ([CountryId]) REFERENCES [common].[Country] ([CountryId]),
     CONSTRAINT [FK_CustomerAddress_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [customer].[Customer] ([CustomerId])
 );
+
+
 

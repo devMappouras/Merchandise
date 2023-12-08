@@ -4,10 +4,10 @@ namespace Infrastructure.DataAccess;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly ApplicationDbContext _context;
+    private readonly MerchantiseDBContext _context;
     private IDbContextTransaction _transaction;
 
-    public UnitOfWork(ApplicationDbContext context)
+    public UnitOfWork(MerchantiseDBContext context)
     {
         _context = context;
     }

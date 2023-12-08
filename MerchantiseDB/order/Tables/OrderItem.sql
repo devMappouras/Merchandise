@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [order].[OrderItem] (
-    [OrderItemId] INT             NOT NULL,
+    [OrderItemId] INT             IDENTITY (1, 1) NOT NULL,
     [OrderId]     INT             NOT NULL,
     [ProductId]   INT             NOT NULL,
     [Quantity]    INT             NOT NULL,
@@ -8,4 +8,6 @@
     CONSTRAINT [FK_OrderItem_Order] FOREIGN KEY ([OrderId]) REFERENCES [order].[Order] ([OrderId]),
     CONSTRAINT [FK_OrderItem_Product] FOREIGN KEY ([ProductId]) REFERENCES [product].[Product] ([ProductId])
 );
+
+
 

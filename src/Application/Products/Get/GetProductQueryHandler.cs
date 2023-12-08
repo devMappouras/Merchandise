@@ -9,16 +9,14 @@ public record GetProductQuery(int ProductId) : IRequest<ProductResponse>;
 
 public record ProductResponse(
     int ProductId,
-    string Name,
-    decimal Price,
-    int? Stock);
+    string Name);
 
 
 internal sealed class GetProductQueryHandler : IRequestHandler<GetProductQuery, ProductResponse>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly MerchantiseDBContext _context;
 
-    public GetProductQueryHandler(ApplicationDbContext context)
+    public GetProductQueryHandler(MerchantiseDBContext context)
     {
         _context = context;
     }
@@ -26,12 +24,10 @@ internal sealed class GetProductQueryHandler : IRequestHandler<GetProductQuery, 
     public async Task<ProductResponse> Handle(GetProductQuery request, CancellationToken cancellationToken)
     {
         var product = await _context.Products
-            .Where(p => p.Id == request.ProductId)
+            .Where(p => p.ProductId == request.ProductId)
             .Select(p => new ProductResponse(
-                p.Id,
-                p.Name,
-                p.Price,
-                p.Stock))
+                p.ProductId,
+                p.ProductName))
             .FirstOrDefaultAsync(cancellationToken);
 
         if (product is null)
