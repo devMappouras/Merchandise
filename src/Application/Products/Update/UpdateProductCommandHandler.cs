@@ -6,15 +6,22 @@ namespace Application.Products.Update;
 
 public record UpdateProductCommand(
     int ProductId,
-    string Name,
+    string ProductName,
+    string Description,
     decimal Price,
-    int Stock) : IRequest;
+    int DiscountId,
+    int CategoryId,
+    int? ManufacturerId,
+    int? InventoryId) : IRequest;
 
-public record UpdaterProductRequest(
-    int ProductId,
-    string Name,
+public record UpdateProductRequest(
+    string ProductName,
+    string Description,
     decimal Price,
-    int Stock);
+    int DiscountId,
+    int CategoryId,
+    int? ManufacturerId,
+    int? InventoryId);
 
 internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
 {
@@ -32,7 +39,14 @@ internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProduc
         var product = await _productRepository.GetByIdAsync(request.ProductId)
             ?? throw new ProductNotFoundException(request.ProductId);
 
-        //product.Update(request.Name, request.Price, request.Stock);
+        product.Update(              
+            request.ProductName,
+            request.Description,
+            request.Price,
+            request.DiscountId,
+            request.CategoryId,
+            request.ManufacturerId,
+            request.InventoryId);
         _productRepository.Update(product);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);

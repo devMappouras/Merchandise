@@ -35,9 +35,16 @@ public class Products : ICarterModule
             }
         });
 
-        app.MapPut("products/{id:int}", async (int id, [FromBody]UpdaterProductRequest request, ISender sender) =>
+        app.MapPut("products/{id:int}", async (int id, [FromBody]UpdateProductRequest request, ISender sender) =>
         {
-            var command = new UpdateProductCommand(id, request.Name, request.Price, request.Stock);
+            var command = new UpdateProductCommand(id,
+                request.ProductName,
+                request.Description,
+                request.Price,
+                request.DiscountId,
+                request.CategoryId,
+                request.ManufacturerId,
+                request.InventoryId);
             await sender.Send(command);
             return Results.NoContent();
         });

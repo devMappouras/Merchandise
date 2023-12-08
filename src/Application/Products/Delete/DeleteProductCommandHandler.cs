@@ -21,9 +21,7 @@ internal sealed class DeleteProductCommandHandler : IRequestHandler<DeleteProduc
     {
         var product = await _productRepository.GetByIdAsync(request.ProductId);
         if (product is null)
-        {
             throw new ProductNotFoundException(request.ProductId);
-        }
 
         _productRepository.Delete(product);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
