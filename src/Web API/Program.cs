@@ -1,6 +1,5 @@
 using Application;
 using Infrastructure;
-using Presentation;
 using Serilog;
 using Infrastructure.DataAccess;
 using Domain.Products;
@@ -20,8 +19,7 @@ builder.Services.AddSwaggerGen(c =>
 var configuration = builder.Configuration;
 builder.Services
     .AddApplication()
-    .AddInfrastructure(configuration)
-    .AddPresentation();
+    .AddInfrastructure(configuration);
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
