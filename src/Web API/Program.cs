@@ -2,19 +2,15 @@ using Application;
 using Infrastructure;
 using Serilog;
 using Infrastructure.DataAccess;
-using Domain.Products;
 using Infrastructure.Repositories;
-using Microsoft.OpenApi.Models;
 using Carter;
+using Domain.Repositories;
+using Web_API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSwagger();
 builder.Services.AddCarter();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Merchandise API", Version = "v1" });
-});
 
 var configuration = builder.Configuration;
 builder.Services
@@ -26,6 +22,7 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
 var app = builder.Build();
 
@@ -35,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Merchandise API v1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Merchandise API");
     });
 }
 
@@ -44,6 +41,8 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.MapSwagger();
 
 app.MapCarter();
 

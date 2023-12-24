@@ -1,4 +1,5 @@
-﻿using Domain.Colors;
+﻿using Domain.Exceptions;
+using Domain.Entities;
 using Infrastructure.DataAccess;
 using MediatR;
 
@@ -8,22 +9,22 @@ public record DeleteColorCommand(int ColorId) : IRequest;
 
 internal sealed class DeleteColorCommandHandler : IRequestHandler<DeleteColorCommand>
 {
-    private readonly IColorRepository _ColorRepository;
+    private readonly IBaseRepository<Color> _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteColorCommandHandler(IColorRepository ColorRepository, IUnitOfWork unitOfWork)
+    public DeleteColorCommandHandler(IBaseRepository<Color> repository, IUnitOfWork unitOfWork)
     {
-        _ColorRepository = ColorRepository;
+        _repository = repository;
         _unitOfWork = unitOfWork;
     }
 
     public async Task Handle(DeleteColorCommand request, CancellationToken cancellationToken)
     {
-        var Color = await _ColorRepository.GetByIdAsync(request.ColorId);
+        var Color = await _repository.GetByIdAsync(request.ColorId);
         if (Color is null)
-            throw new ColorNotFoundException(request.ColorId);
+            throw new NotFoundException(request.ColorId, nameof(Color));
 
-        _ColorRepository.Delete(Color);
+        _repository.Delete(Color);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Products;
+using Domain.Repositories;
 using Infrastructure.DataAccess;
 using MediatR;
 

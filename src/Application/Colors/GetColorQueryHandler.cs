@@ -1,4 +1,4 @@
-﻿using Domain.Colors;
+﻿using Domain.Exceptions;
 using Infrastructure.DataAccess;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,8 @@ public record GetColorQuery(int ColorId) : IRequest<ColorResponse>;
 
 public record ColorResponse(
     int ColorId,
-    string Name);
+    string ColorName,
+    string ColorCode);
 
 
 internal sealed class GetColorQueryHandler : IRequestHandler<GetColorQuery, ColorResponse>
@@ -27,12 +28,13 @@ internal sealed class GetColorQueryHandler : IRequestHandler<GetColorQuery, Colo
             .Where(p => p.ColorId == request.ColorId)
             .Select(p => new ColorResponse(
                 p.ColorId,
-                p.ColorName))
+                p.ColorName,
+                p.ColorCode))
             .FirstOrDefaultAsync(cancellationToken);
 
         if (Color is null)
         {
-            throw new ColorNotFoundException(request.ColorId);
+            throw new NotFoundException(request.ColorId, nameof(Color));
         }
         return Color;
     }

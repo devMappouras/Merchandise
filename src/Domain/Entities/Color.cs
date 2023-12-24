@@ -4,9 +4,15 @@ public partial class Color
 {
     public int ColorId { get; set; }
 
-    public string ColorName { get; set; }
+    public string ColorName { get; set; } = String.Empty;
 
-    public string ColorCode { get; set; }
+    public string ColorCode { get; set; } = String.Empty;
 
     public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
+
+    public void Update(string colorName, string colorCode)
+    {
+        ColorName = colorName;
+        ColorCode = colorCode;
+    }
 }

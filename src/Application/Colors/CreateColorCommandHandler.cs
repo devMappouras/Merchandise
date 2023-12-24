@@ -6,18 +6,13 @@ namespace Application.Colors.Create;
 
 public record CreateColorCommand(
                string ColorName,
-               string description,
-               decimal price,
-               int discountId,
-               int categoryId,
-               int? manufacturerId,
-               int? inventoryId) : IRequest;
+               string ColorCode) : IRequest;
 
 public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand>
 {
-    private readonly IRepositoryBase<Color> _repository;
+    private readonly IBaseRepository<Color> _repository;
     private readonly IUnitOfWork _unitOfWork;
-    public CreateColorCommandHandler(IRepositoryBase<Color> repository, IUnitOfWork unitOfWork)
+    public CreateColorCommandHandler(IBaseRepository<Color> repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;

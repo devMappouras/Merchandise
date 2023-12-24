@@ -3,13 +3,13 @@ using Application.Products.Delete;
 using Application.Products.Get;
 using Application.Products.Update;
 using Carter;
-using Domain.Products;
+using Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web_API.Endpoints;
 
-public class Products : ICarterModule
+public class ProductsModule : ICarterModule
 {
     const string ProductsEmdpointsName = "products";
     public void AddRoutes(IEndpointRouteBuilder app)

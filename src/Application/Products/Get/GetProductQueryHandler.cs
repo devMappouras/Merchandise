@@ -1,4 +1,4 @@
-﻿using Domain.Products;
+﻿using Domain.Exceptions;
 using Infrastructure.DataAccess;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
