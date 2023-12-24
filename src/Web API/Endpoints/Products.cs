@@ -9,15 +9,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web_API.Endpoints;
 
-public class ProductsModule : ICarterModule
+public class Products : ICarterModule
 {
-    const string ProductsEmdpointsName = "products";
+    const string ProductsEndpointsName = "products";
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         /// <summary>
         /// Creates a new product.
         /// </summary>
-        app.MapPost(ProductsEmdpointsName, async (CreateProductCommand command, ISender sender) => 
+        app.MapPost(ProductsEndpointsName, async (CreateProductCommand command, ISender sender) => 
         {
             await sender.Send(command); 
             return Results.Ok();

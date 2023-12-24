@@ -2,7 +2,7 @@
 using Infrastructure.DataAccess;
 using MediatR;
 
-namespace Application.Colors.Create;
+namespace Application.Colors;
 
 public record CreateColorCommand(
                string ColorName,

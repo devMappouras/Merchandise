@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using MediatR;
 
-namespace Application.Colors.Get;
+namespace Application.Colors;
 
 public record GetColorsQuery() : IRequest<IEnumerable<ColorResponse>?>;
 

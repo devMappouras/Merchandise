@@ -9,4 +9,10 @@ public partial class Size
     public string SizeDescription { get; set; }
 
     public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
+
+    public void Update(string requestSizeName, string requestSizeDescription)
+    {
+        SizeName = requestSizeName;
+        SizeDescription = requestSizeDescription;
+    }
 }

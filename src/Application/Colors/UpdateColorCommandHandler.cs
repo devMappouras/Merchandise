@@ -3,7 +3,7 @@ using Domain.Exceptions;
 using Infrastructure.DataAccess;
 using MediatR;
 
-namespace Application.Colors.Update;
+namespace Application.Colors;
 
 public record UpdateColorCommand(
     int ColorId,

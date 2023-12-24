@@ -3,7 +3,7 @@ using Infrastructure.DataAccess;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Colors.Get;
+namespace Application.Colors;
 
 public record GetColorQuery(int ColorId) : IRequest<ColorResponse>;
 

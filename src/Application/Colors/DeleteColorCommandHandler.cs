@@ -1,9 +1,9 @@
-﻿using Domain.Exceptions;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Domain.Exceptions;
 using Infrastructure.DataAccess;
 using MediatR;
 
-namespace Application.Colors.Delete;
+namespace Application.Colors;
 
 public record DeleteColorCommand(int ColorId) : IRequest;
 

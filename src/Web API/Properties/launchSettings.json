@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5067"
     },
-    "https": {
+    "MerchandiseAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
