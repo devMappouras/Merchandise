@@ -23,11 +23,11 @@ public class Products : ICarterModule
             return Results.Ok();
         });
 
-        app.MapGet("products/{id:int}", async (int Id, ISender sender) =>
+        app.MapGet("products/{id:int}", async (int id, ISender sender) =>
         {
             try
             {
-                return Results.Ok(await sender.Send(new GetProductQuery(Id)));
+                return Results.Ok(await sender.Send(new GetProductQuery(id)));
             }
             catch (ProductNotFoundException e)
             {

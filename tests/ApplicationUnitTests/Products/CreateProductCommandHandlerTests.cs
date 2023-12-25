@@ -1,5 +1,4 @@
 ﻿using Application.Products.Create;
-using Domain.Products;
 using Infrastructure.DataAccess;
 using Moq;
 using NUnit.Framework;

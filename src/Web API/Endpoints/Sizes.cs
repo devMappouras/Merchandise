@@ -20,11 +20,11 @@ public class Sizes : ICarterModule
             return Results.Ok();
         });
 
-        app.MapGet("Sizes/{id:int}", async (int Id, ISender sender) =>
+        app.MapGet("Sizes/{id:int}", async (int id, ISender sender) =>
         {
             try
             {
-                return Results.Ok(await sender.Send(new GetSizeQuery(Id)));
+                return Results.Ok(await sender.Send(new GetSizeQuery(id)));
             }
             catch (NotFoundException e)
             {

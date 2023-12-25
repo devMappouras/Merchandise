@@ -1,4 +1,4 @@
-﻿using Application.Colors;
+﻿using Application.Customers;
 using Carter;
 using Domain.Exceptions;
 using MediatR;
@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web_API.Endpoints;
 
-public class Colors : ICarterModule
+public class Customers : ICarterModule
 {
-    const string ColorsEndpointsName = "Colors";
+    const string CustomersEndpointsName = "Customers";
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         /// <summary>
-        /// Creates a new Color.
+        /// Creates a new Customer.
         /// </summary>
-        app.MapPost(ColorsEndpointsName, async (CreateColorCommand command, ISender sender) => 
+        app.MapPost(CustomersEndpointsName, async (CreateCustomerCommand command, ISender sender) => 
         {
             await sender.Send(command); 
             return Results.Ok();
         });
 
-        app.MapGet("Colors/{id:int}", async (int id, ISender sender) =>
+        app.MapGet("Customers/{id:int}", async (int id, ISender sender) =>
         {
             try
             {
-                return Results.Ok(await sender.Send(new GetColorQuery(id)));
+                return Results.Ok(await sender.Send(new GetCustomerQuery(id)));
             }
             catch (NotFoundException e)
             {
@@ -32,11 +32,11 @@ public class Colors : ICarterModule
             }
         });
 
-        app.MapGet("Colors", async (ISender sender) =>
+        app.MapGet("Customers", async (ISender sender) =>
         {
             try
             {
-                return Results.Ok(await sender.Send(new GetColorsQuery()));
+                return Results.Ok(await sender.Send(new GetCustomersQuery()));
             }
             catch (NotFoundException e)
             {
@@ -44,20 +44,22 @@ public class Colors : ICarterModule
             }
         });
 
-        app.MapPut("Colors/{id:int}", async (int id, [FromBody]UpdateColorRequest request, ISender sender) =>
+        app.MapPut("Customers/{id:int}", async (int id, [FromBody]UpdateCustomerRequest request, ISender sender) =>
         {
-            var command = new UpdateColorCommand(id,
-                request.ColorName,
-                request.ColorCode);
+            var command = new UpdateCustomerCommand(id,
+                request.Email,
+                request.Phone,
+                request.Name,
+                request.LastName);
             await sender.Send(command);
             return Results.NoContent();
         });
 
-        app.MapDelete("Colors/{id:int}", async (int id, ISender sender) => 
+        app.MapDelete("Customers/{id:int}", async (int id, ISender sender) => 
         {
             try
             {
-                await sender.Send(new DeleteColorCommand(id));
+                await sender.Send(new DeleteCustomerCommand(id));
                 return Results.NoContent();
             }
             catch (NotFoundException e)
