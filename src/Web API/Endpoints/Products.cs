@@ -1,7 +1,7 @@
-﻿using Application.Products.Create;
-using Application.Products.Delete;
-using Application.Products.Get;
-using Application.Products.Update;
+﻿using Application.Products.Products.Create;
+using Application.Products.Products.Delete;
+using Application.Products.Products.Get;
+using Application.Products.Products.Update;
 using Carter;
 using Domain.Exceptions;
 using MediatR;

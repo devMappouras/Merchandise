@@ -3,7 +3,7 @@ using Domain.Repositories;
 using Infrastructure.DataAccess;
 using MediatR;
 
-namespace Application.Products.Update;
+namespace Application.Products.Products.Update;
 
 public record UpdateProductCommand(
     int ProductId,
@@ -13,7 +13,9 @@ public record UpdateProductCommand(
     int DiscountId,
     int CategoryId,
     int? ManufacturerId,
-    int? InventoryId) : IRequest;
+    int? InventoryId,
+    int? ColorId,
+    int? SizeId) : IRequest;
 
 public record UpdateProductRequest(
     string ProductName,
@@ -22,7 +24,9 @@ public record UpdateProductRequest(
     int DiscountId,
     int CategoryId,
     int? ManufacturerId,
-    int? InventoryId);
+    int? InventoryId,
+    int? ColorId,
+    int? SizeId);
 
 internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
 {
@@ -47,7 +51,9 @@ internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProduc
             request.DiscountId,
             request.CategoryId,
             request.ManufacturerId,
-            request.InventoryId);
+            request.InventoryId,
+            request.ColorId,
+            request.SizeId);
         _productRepository.Update(product);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);

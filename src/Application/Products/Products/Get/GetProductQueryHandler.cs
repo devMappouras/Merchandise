@@ -3,7 +3,7 @@ using Infrastructure.DataAccess;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Products.Get;
+namespace Application.Products.Products.Get;
 
 public record GetProductQuery(int ProductId) : IRequest<ProductResponse>;
 

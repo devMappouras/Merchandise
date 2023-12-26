@@ -3,7 +3,7 @@ using Domain.Repositories;
 using Infrastructure.DataAccess;
 using MediatR;
 
-namespace Application.Products.Delete;
+namespace Application.Products.Products.Delete;
 
 public record DeleteProductCommand(int ProductId) : IRequest;
 

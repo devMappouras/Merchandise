@@ -1,5 +1,6 @@
 ﻿using Application.Colors;
 using Application.Customers;
+using Application.Products.CategoryGroups;
 using Application.Sizes;
 using Domain.Entities;
 using Riok.Mapperly.Abstractions;
@@ -21,4 +22,8 @@ public partial class MapperlyMapper
     public partial Customer Map(CreateCustomerCommand customerCommand);
     public partial CustomerResponse Map(Customer customer);
     public partial IEnumerable<CustomerResponse> Map(IEnumerable<Customer> customers);
+    
+    public partial CategoryGroup Map(CreateCategoryGroupCommand categoryGroupCommand);
+    public partial CategoryGroupResponse Map(CategoryGroup categoryGroup);
+    public partial IEnumerable<CategoryGroupResponse> Map(IEnumerable<CategoryGroup> categoryGroups);
 }

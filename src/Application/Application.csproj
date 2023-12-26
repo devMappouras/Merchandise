@@ -34,4 +34,13 @@
     <None Include="D:\Programming\00.DevMappouras\Merchandise\Merchandise\src\Application\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Products\Discounts\" />
+    <Folder Include="Products\Manufacturers\" />
+    <Folder Include="Products\ProductCategories\" />
+    <Folder Include="Products\ProductInventories\" />
+    <Folder Include="Products\Products\" />
+  </ItemGroup>
+
 </Project>

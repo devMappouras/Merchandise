@@ -36,13 +36,9 @@ public partial class MerchantiseDBContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-
-    public virtual DbSet<ProductColor> ProductColors { get; set; }
-
+    
     public virtual DbSet<ProductInventory> ProductInventories { get; set; }
-
-    public virtual DbSet<ProductSize> ProductSizes { get; set; }
-
+    
     public virtual DbSet<ShoppingSession> ShoppingSessions { get; set; }
 
     public virtual DbSet<Size> Sizes { get; set; }

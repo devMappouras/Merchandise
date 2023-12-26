@@ -7,9 +7,7 @@ public partial class Color
     public string ColorName { get; set; } = String.Empty;
 
     public string ColorCode { get; set; } = String.Empty;
-
-    public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
-
+    
     public void Update(string colorName, string colorCode)
     {
         ColorName = colorName;

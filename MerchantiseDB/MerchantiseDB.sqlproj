@@ -69,8 +69,6 @@
     <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="product\Tables\ProductColor.sql" />
-    <Build Include="product\Tables\ProductSize.sql" />
     <Build Include="product\Tables\ProductInventory.sql" />
     <Build Include="product\Tables\Manufacturer.sql" />
     <Build Include="product\Tables\Product.sql" />

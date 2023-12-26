@@ -3,7 +3,7 @@ using Domain.Repositories;
 using Infrastructure.DataAccess;
 using MediatR;
 
-namespace Application.Products.Create;
+namespace Application.Products.Products.Create;
 
 public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 {

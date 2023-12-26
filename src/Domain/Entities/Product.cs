@@ -23,8 +23,6 @@ public partial class Product
         Manufacturer = new Manufacturer();
         CartItems = new HashSet<CartItem>();
         OrderItems = new HashSet<OrderItem>();
-        ProductColors = new HashSet<ProductColor>();
-        ProductSizes = new HashSet<ProductSize>();
     }
 
     public int ProductId { get; set; }
@@ -42,6 +40,10 @@ public partial class Product
     public int? ManufacturerId { get; set; }
 
     public int? InventoryId { get; set; }
+    
+    public int? ColorId { get; set; }
+    
+    public int? SizeId { get; set; }
 
     public virtual ProductCategory Category { get; set; }
 
@@ -54,18 +56,16 @@ public partial class Product
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-
-    public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
-
-    public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
-
+    
     public void Update(string productName,
                        string description,
                        decimal price,
                        int discountId,
                        int categoryId,
                        int? manufacturerId,
-                       int? inventoryId)
+                       int? inventoryId,
+                       int? colorId,
+                       int? sizeId)
     {
         ProductName = productName;
         Description = description;
@@ -74,5 +74,7 @@ public partial class Product
         CategoryId = categoryId;
         ManufacturerId = manufacturerId;
         InventoryId = inventoryId;
+        ColorId = colorId;
+        SizeId = sizeId;
     }
 }
