@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -35,7 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Cart\CartItem\" />
+    <Folder Include="Cart\ShoppingSession\" />
     <Folder Include="Common\" />
+    <Folder Include="Order\OrderStatus\" />
+    <Folder Include="Order\Order\" />
     <Folder Include="Products\Discounts\" />
     <Folder Include="Products\Manufacturers\" />
     <Folder Include="Products\ProductCategories\" />
