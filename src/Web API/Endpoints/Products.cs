@@ -37,14 +37,17 @@ public class Products : ICarterModule
 
         app.MapPut("products/{id:int}", async (int id, [FromBody]UpdateProductRequest request, ISender sender) =>
         {
-            var command = new UpdateProductCommand(id,
+            var command = new UpdateProductCommand(
+                id,
                 request.ProductName,
                 request.Description,
                 request.Price,
                 request.DiscountId,
                 request.CategoryId,
                 request.ManufacturerId,
-                request.InventoryId);
+                request.InventoryId,
+                request.ColorId,
+                request.SizeId);
             await sender.Send(command);
             return Results.NoContent();
         });
